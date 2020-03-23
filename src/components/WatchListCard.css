@@ -1,0 +1,10 @@
+.watch-list-card {
+   min-width: 250px !important;
+   max-width: 250px !important;
+}
+
+@media (max-width: 767.98px) {
+  .card {
+    display: table-cell !important; 
+  }
+}
