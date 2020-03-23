@@ -14,19 +14,19 @@ class Footer extends Component {
     return (
       <Fragment>
         <div className='bg-dark text-white'>
-          <Container>
+          <Container fluid>
             <Row className='py-3'>
-              <Col>he industry's standard dummy text ever since the 1500s, when an
+              <Col xs={12} md={4} className='mt-3 mt-md-auto'>he industry's standard dummy text ever since the 1500s, when an
               unknown printer took a galley of type and scrambled it to make a type
               specimen book. It has survived not only five centuries, but also the
               leap into electronic typesetting, remaining essentially unchanged.
               It was </Col>
-              <Col>he industry's standard dummy text ever since the 1500s, when an
+              <Col xs={12} md={4} className='mt-3 mt-md-auto'>he industry's standard dummy text ever since the 1500s, when an
               unknown printer took a galley of type and scrambled it to make a type
               specimen book. It has survived not only five centuries, but also the
               leap into electronic typesetting, remaining essentially unchanged.
               It was </Col>
-              <Col>he industry's standard dummy text ever since the 1500s, when an
+              <Col xs={12} md={4} className='mt-3 mt-md-auto'>he industry's standard dummy text ever since the 1500s, when an
               unknown printer took a galley of type and scrambled it to make a type
               specimen book. It has survived not only five centuries, but also the
               leap into electronic typesetting, remaining essentially unchanged.
