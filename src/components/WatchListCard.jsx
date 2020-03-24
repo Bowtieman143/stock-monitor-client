@@ -14,7 +14,6 @@ class WatchListCard extends Component {
   }
 
   render() {
-    const { stockSymbol } = this.props;
     return (
       <Card className='watch-list-card'>
         <Card.Header>Featured</Card.Header>

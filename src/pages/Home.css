@@ -1,5 +1,10 @@
-#sidebar {
-  min-height: 300px;
-  max-height: 400px;
+#news-articles {
+  max-height: 600px;
   overflow-y: auto;
+  resize: vertical;
+}
+@media (max-width: 767.98px) {
+  #news-articles {
+    height: 300px;
+  }
 }
