@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
-import { XYPlot, LineSeries } from 'react-vis';
 import NewsCarousel from './NewsCarousel.jsx';
 import ViewNewsTab from './ViewNewsTab.jsx';
 import StockGraph from './StockGraph.jsx'
