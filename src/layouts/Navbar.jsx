@@ -5,7 +5,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Nav from 'react-bootstrap/Nav';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import SearchStock from '../components/SearchStock.jsx';
+import StockGraph from '../components/StockGraph.jsx';
 
 // Component css
 import './Navbar.css';
@@ -54,9 +57,16 @@ class MainNavbar extends Component {
                 onChange={this.handleChange}
               />
               { isSearching ?
-                <div className='d-lg-none text-white'>
-                  <SearchStock stockSymbol={searchedStockSymbol} />
-                </div>
+                <Container className='d-lg-none text-white'>
+                  <Row>
+                    <Col md={3}>
+                      <StockGraph />
+                    </Col>
+                    <Col md={9}>
+                      <SearchStock stockSymbol={searchedStockSymbol} />
+                    </Col>
+                  </Row>
+                </Container>
                 :
                 null
               }
@@ -67,7 +77,14 @@ class MainNavbar extends Component {
         { isSearching ?
           <Container id='current-stock-search-result'
             className='bg-dark rounded text-white shadow-lg d-none d-md-block py-4'>
-            <SearchStock stockSymbol={searchedStockSymbol} />
+            <Row>
+              <Col md={3}>
+                <StockGraph />
+              </Col>
+              <Col md={9}>
+                <SearchStock stockSymbol={searchedStockSymbol} />
+              </Col>
+            </Row>
           </Container>
           :
           null

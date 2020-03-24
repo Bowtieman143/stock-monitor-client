@@ -14,7 +14,6 @@ class NewsCarousel extends Component {
   componentDidMount() {
     axios.get('https://stocknewsapi.com/api/v1/category?section=general&items=50&token=pudtkelo3pemsxaegt7pa4edyfcaref32lx9utoo&sortby=trending')
       .then((data) => {
-        console.log(data.data.data[0]);
         this.setState({
           newsArticles: data.data.data
         })
