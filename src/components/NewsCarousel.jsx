@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import Media from 'react-bootstrap/Media';
 import axios from 'axios';
 
+import './NewsCarousel.css'
+
 class NewsCarousel extends Component {
   constructor(props) {
     super(props);
@@ -24,10 +26,10 @@ class NewsCarousel extends Component {
   render() {
     const { newsArticles } = this.state;
     const displayNewsArticles = newsArticles.map((article, idx) =>
-      <Media key={idx}>
-        <img width={64} height={64} className="mr-3" src={article.image_url} alt="Generic placeholder"/>
+      <Media key={idx} className='alternate-articles p-3'>
+        <img width={64} height={64} className='mr-3' src={article.image_url} alt='Generic placeholder'/>
         <Media.Body>
-          <h5>{article.title.substring(0,35).concat('...')}</h5>
+          <h5>{article.title.substring(0,25).concat('...')}</h5>
           <p>{article.text.substring(0,75).concat('...')}</p>
         </Media.Body>
       </Media>
@@ -35,7 +37,6 @@ class NewsCarousel extends Component {
 
     return (
       <Fragment>
-        <h1>view recent news</h1>
         { displayNewsArticles }
       </Fragment>
     );

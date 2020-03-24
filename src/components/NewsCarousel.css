@@ -1,0 +1,3 @@
+.alternate-articles:nth-of-type(even) {
+  background-color: #ededed;
+}
