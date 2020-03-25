@@ -25,9 +25,9 @@ class NewsCarousel extends Component {
   render() {
     const { newsArticles } = this.state;
     const displayNewsArticles = newsArticles.map((article, idx) =>
-      <Media key={idx} className='alternate-articles p-3'>
-        <img width={64} height={64} className='mr-3' src={article.image_url} alt='Generic placeholder'/>
-        <Media.Body>
+      <Media key={idx} className='alternate-articles p-0'>
+        <img width={50} height={50} className='mr-3' src={article.image_url} alt='Generic placeholder'/>
+        <Media.Body className='px-2'>
           <h5>{article.title.substring(0,25).concat('...')}</h5>
           <p>{article.text.substring(0,75).concat('...')}</p>
         </Media.Body>

@@ -78,10 +78,10 @@ class MainNavbar extends Component {
           <Container id='current-stock-search-result'
             className='bg-dark rounded text-white shadow-lg d-none d-md-block py-4'>
             <Row>
-              <Col md={3}>
-                <StockGraph />
+              <Col md={4}>
+                <StockGraph height={200} />
               </Col>
-              <Col md={9}>
+              <Col md={8}>
                 <SearchStock stockSymbol={searchedStockSymbol} />
               </Col>
             </Row>

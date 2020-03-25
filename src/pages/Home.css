@@ -1,5 +1,5 @@
 #news-articles {
-  max-height: 600px;
+  max-height: 250px;
   overflow-y: auto;
   resize: vertical;
 }
@@ -7,4 +7,7 @@
   #news-articles {
     height: 300px;
   }
+}
+.rounded-large {
+  border-radius: 12px;
 }

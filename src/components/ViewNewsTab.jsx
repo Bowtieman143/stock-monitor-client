@@ -16,7 +16,7 @@ class ViewNewsTab extends Component {
   }
   render() {
     return (
-      <div className='text-center d-md-none mt-5' style={{borderBottom: '3px solid #343a40'}}>
+      <div className='text-center d-md-none mt-2'>
         <Button variant='dark' id='view-news-btn' className='px-4 py-2' onClick={(this.hideArticlesContainer)}>View News</Button>
       </div>
     );

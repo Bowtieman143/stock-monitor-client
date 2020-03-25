@@ -1,5 +1,34 @@
+body {
+
+}
+
 #watch-list-card-container {
   flex-flow: nowrap !important;
   overflow-x: auto !important;
   scroll-behavior: smooth;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #444444;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #222222;
+}
+
+.card-header-rounded-top {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }

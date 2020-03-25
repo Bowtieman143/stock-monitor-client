@@ -13,6 +13,8 @@ class SearchStock extends Component {
       <Fragment>
         <p>Your have typed <strong>{ stockSymbol }</strong> for your stock</p>
         <p>is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's st versions of Lorem Ipsis simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's st versions of Lorem Ipsis simply dummy text of the printing and typesetting industry.
         Lorem Ipsum has been the industry's st versions of Lorem Ips</p>
         <Button variant="primary">Add to Watchlist</Button>
       </Fragment>
