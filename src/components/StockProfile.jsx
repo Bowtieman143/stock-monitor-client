@@ -41,10 +41,6 @@ class StockProfile extends Component {
          stockQuote: result[2],
          stockHistoricalPrice: result[3]
        });
-       console.log(this.state.stockQuote);
-       console.log(this.state.stockProfile);
-       console.log(this.state.stockRatings);
-       console.log(this.state.stockHistoricalPrice);
      })
      .catch(error => console.log(`Error in promises ${error}`))
   }

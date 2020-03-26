@@ -8,18 +8,43 @@ import './Primary.css';
 class Primary extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      graphData: []
+    };
+  }
+
+  getWeekOfData = (stockTimeSheet) => {
+    const closingDates = stockTimeSheet.reverse();
+    const closingWeekPrices = [];
+
+    for (let i = 0; i < 30; i++) {
+      let dataPoint = {};
+      dataPoint.x = closingDates[i].date;
+      dataPoint.y = closingDates[i].close;
+      closingWeekPrices.push(dataPoint);
+    }
+    return closingWeekPrices;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { stockHistoricalPrice } = this.props;
+
+    if (prevProps.stockHistoricalPrice !== stockHistoricalPrice) {
+      this.setState({
+        graphData: this.getWeekOfData(stockHistoricalPrice.data.historical)
+      });
+    }
   }
 
   render() {
-    const { stockQuote, stockProfile, stockRatings, stockHistoricalPrice } = this.props;
+    const { graphData } = this.state;
 
     return (
       <Col id='primary' xs={12} md={8} className='p-3 p-md-4'>
         <div className="shadow-lg rounded-large pb-4">
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>This is the header</h5>
           <div className='px-2 px-md-4'>
-            <StockGraph height={150} mobileHeight={250} />
+            <StockGraph height={100} mobileHeight={250} graphData={graphData} />
           </div>
           <Nav className='justify-content-center mt-4' variant="pills" defaultActiveKey="#">
             <Nav.Item>

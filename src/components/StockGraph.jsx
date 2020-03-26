@@ -7,60 +7,76 @@ class StockGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-    };
-  }
-
-  static defaultProps = {
-    height: 200,
-    mobileHeight: 300,
-    graphData: {
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-          {
-          label: 'CLDR',
-          data: [12, 19, 3, 5, 2, 3, 10, 19, 3, 5, 2, 3],
-          backgroundColor: ['rgba(54, 162, 235, 0.3)'],
-          borderColor: ['rgba(54, 162, 235, 1)'],
-          borderWidth: 1
+      graphConfig: {
+        data: {
+          datasets: [{
+            label: '# of Votes',
+            data: [],
+            backgroundColor: [
+                'rgba(255, 159, 64, 0.2)'
+            ]
+          }]
         },
-        {
-          label: 'FB',
-          data: [32, 2, 8, 15, 12, 33, 30, 9, 3, 45, 8, 2],
-          backgroundColor: ['rgba(235, 20, 64, 0.3)'],
-          borderColor: ['rgba(235, 20, 64, 1)'],
-          borderWidth: 1
-        }
-      ]
-      },
-      options: {
-        scales: {
+        options: {
+          responsive: true,
+          legend: {
+            display: true,
+            position: "top"
+          },
+          scales: {
             yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+              ticks: {
+                beginAtZero: false
+              },
+            }],
+            xAxes: [{
+              type: 'time',
+              distribution: 'series'
             }]
+          }
         }
       }
     }
   }
 
+  static defaultProps = {
+    height: 200,
+    mobileHeight: 300,
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { graphData } = this.props;
+
+    if (prevProps.graphData !== graphData) {
+      let newGraphConfig = Object.assign({}, this.state.graphConfig);
+      newGraphConfig.data.datasets[0].data = graphData;
+
+      console.log(newGraphConfig.data);
+      this.setState({
+        graphConfig: newGraphConfig
+      });
+    }
+  }
+
   render() {
-    const { height, mobileHeight, graphData } = this.props;
+    const { height, mobileHeight } = this.props;
+    const { graphConfig } = this.state;
     const windowWidth = window.innerWidth;
+
+    console.log(graphConfig);
 
     return (
       <div className='chart bg-light'>
+
         <Line
           height={windowWidth > 1000 ? height : mobileHeight}
-          data={graphData.data}
-          options={this.props.options}
+          data={graphConfig.data}
+          options={graphConfig.options}
         />
+
       </div>
     );
   }
-
 }
 
 export default StockGraph;
