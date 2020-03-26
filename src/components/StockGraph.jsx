@@ -7,22 +7,32 @@ class StockGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
+    };
+  }
+
+  static defaultProps = {
+    height: 200,
+    mobileHeight: 300,
+    graphData: {
       data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
+        datasets: [
+          {
+          label: 'CLDR',
           data: [12, 19, 3, 5, 2, 3, 10, 19, 3, 5, 2, 3],
-          backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+          backgroundColor: ['rgba(54, 162, 235, 0.3)'],
           borderColor: ['rgba(54, 162, 235, 1)'],
           borderWidth: 1
         },
         {
-          label: '# of Votes',
-          data: [2, 12, 1, 19, 6, 9, 2, 12, 1, 19, 6, 9],
-          backgroundColor: ['rgba(54, 162, 235, 0.2)'],
-          borderColor: ['rgba(54, 162, 235, 1)'],
+          label: 'FB',
+          data: [32, 2, 8, 15, 12, 33, 30, 9, 3, 45, 8, 2],
+          backgroundColor: ['rgba(235, 20, 64, 0.3)'],
+          borderColor: ['rgba(235, 20, 64, 1)'],
           borderWidth: 1
-        }]
+        }
+      ]
       },
       options: {
         scales: {
@@ -33,20 +43,19 @@ class StockGraph extends Component {
             }]
         }
       }
-    };
-  }
-
-  static defaultProps = {
-    height: 300
+    }
   }
 
   render() {
+    const { height, mobileHeight, graphData } = this.props;
+    const windowWidth = window.innerWidth;
+
     return (
       <div className='chart bg-light'>
         <Line
-          height={this.props.height}
-          data={this.state.data}
-          options={this.state.options}
+          height={windowWidth > 1000 ? height : mobileHeight}
+          data={graphData.data}
+          options={this.props.options}
         />
       </div>
     );
