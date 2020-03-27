@@ -37,20 +37,25 @@ class MainNavbar extends Component {
         this.setState({
          searchedStockSymbol: currentSearch,
          isSearching: true
-       });
+        });
+
         axios.get(`https://financialmodelingprep.com/api/v3/historical-price-full/${currentSearch.toUpperCase()}`)
           .then((result) => {
-            if (Object.entries(result).length > 1) {
-              console.log(result.data);
+            if (Object.keys(result.data).length === 0 && result.data.constructor === Object) {
+              console.log('this new if has run');
+              console.log(result);
+              this.setState({
+                doesExist: false,
+                searchedStockSymbol: currentSearch
+              });
+            } else {
+              console.log('The new else has run');
+              console.log(result);
               this.setState({
                 graphData: this.getHistoricalData(result.data.historical),
                 companyName: result.data,
-                doesExist: true,
-              });
-            } else {
-              this.setState({
                 searchedStockSymbol: currentSearch,
-                doesExist: false
+                doesExist: true,
               });
             }
           })
@@ -74,12 +79,12 @@ class MainNavbar extends Component {
   }
 
   render() {
-    const { doesExist, isSearching, searchedStockSymbol } = this.state;
+    const { doesExist, isSearching, searchedStockSymbol, graphData } = this.state;
 
     return (
       <Fragment>
         <Navbar bg='dark' variant='dark' expand='lg'>
-          <Container fluid>
+          <Container>
             <Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav'>
@@ -89,7 +94,7 @@ class MainNavbar extends Component {
               <FormControl type='text'
                 placeholder='Search'
                 className='mr-sm-2'
-                value={this.state.searchedStockSymbol}
+                value={searchedStockSymbol}
                 onChange={this.handleChange}
               />
               { isSearching ?
@@ -97,9 +102,9 @@ class MainNavbar extends Component {
                   <Row>
                     <Col md={3}>
                       { doesExist ?
-                        <StockGraph graphData={this.state.graphData} />
+                        <StockGraph graphData={graphData} />
                           :
-                        <h1>Sorry could not find</h1>
+                        <h2>This does not exist</h2>
                       }
                     </Col>
                     <Col md={9}>
@@ -120,9 +125,9 @@ class MainNavbar extends Component {
             <Row>
               <Col md={4}>
                 { doesExist ?
-                  <StockGraph graphData={this.state.graphData} height={200} />
+                  <StockGraph graphData={graphData} />
                     :
-                  <h1>Sorry could not find</h1>
+                  <h2>This does not exist</h2>
                 }
               </Col>
               <Col md={8}>

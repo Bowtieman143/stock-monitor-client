@@ -31,7 +31,11 @@ class NewsCarousel extends Component {
         <Media.Body className='px-2'>
           <h6>{article.title.substring(0,25).concat('...')}</h6>
           <a href={article.news_url}>{article.news_url.substring(0,25).concat('...')}</a>
-          <p>{article.text.substring(0,75).concat('...')}</p>
+          <p>{ article.text === null ?
+            null
+              :
+            article.text.substring(0,75).concat('...')}
+          </p>
         </Media.Body>
       </Media>
     );
