@@ -10,6 +10,8 @@ import Col from 'react-bootstrap/Col';
 import SearchStock from '../components/SearchStock.jsx';
 import StockGraph from '../components/StockGraph.jsx';
 
+import axios from 'axios';
+
 // Component css
 import './Navbar.css';
 
@@ -18,6 +20,7 @@ class MainNavbar extends Component {
     super(props);
     this.state = {
       isSearching: false,
+      doesExist: false,
       searchedStockSymbol: ''
     }
     this.handleChange = this.handleChange.bind(this);
@@ -30,15 +33,48 @@ class MainNavbar extends Component {
         isSearching: false
       });
     } else {
-      this.setState({
-        searchedStockSymbol: event.target.value,
-        isSearching: true
-      });
+        const currentSearch = event.target.value;
+        this.setState({
+         searchedStockSymbol: currentSearch,
+         isSearching: true
+       });
+        axios.get(`https://financialmodelingprep.com/api/v3/historical-price-full/${currentSearch.toUpperCase()}`)
+          .then((result) => {
+            if (Object.entries(result).length > 1) {
+              console.log(result.data);
+              this.setState({
+                graphData: this.getHistoricalData(result.data.historical),
+                companyName: result.data,
+                doesExist: true,
+              });
+            } else {
+              this.setState({
+                searchedStockSymbol: currentSearch,
+                doesExist: false
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }
   }
 
+  getHistoricalData = (stockHistoricalPriceArray) => {
+    const closingDates = stockHistoricalPriceArray.reverse();
+    const closingWeekPrices = [];
+
+    for (let i = 0; i < 30; i++) {
+      let dataPoint = {};
+      dataPoint.x = closingDates[i].date;
+      dataPoint.y = closingDates[i].close;
+      closingWeekPrices.push(dataPoint);
+    }
+    return closingWeekPrices;
+  }
+
   render() {
-    const { isSearching, searchedStockSymbol } = this.state;
+    const { doesExist, isSearching, searchedStockSymbol } = this.state;
 
     return (
       <Fragment>
@@ -60,7 +96,11 @@ class MainNavbar extends Component {
                 <Container className='d-lg-none text-white'>
                   <Row>
                     <Col md={3}>
-                      <StockGraph />
+                      { doesExist ?
+                        <StockGraph graphData={this.state.graphData} />
+                          :
+                        <h1>Sorry could not find</h1>
+                      }
                     </Col>
                     <Col md={9}>
                       <SearchStock stockSymbol={searchedStockSymbol} />
@@ -79,10 +119,18 @@ class MainNavbar extends Component {
             className='bg-dark rounded text-white shadow-lg d-none d-md-block py-4'>
             <Row>
               <Col md={4}>
-                <StockGraph height={200} />
+                { doesExist ?
+                  <StockGraph graphData={this.state.graphData} height={200} />
+                    :
+                  <h1>Sorry could not find</h1>
+                }
               </Col>
               <Col md={8}>
-                <SearchStock stockSymbol={searchedStockSymbol} />
+                { doesExist ?
+                  <SearchStock companyName={this.state.companyName} stockSymbol={searchedStockSymbol} />
+                  :
+                  <SearchStock stockSymbol={searchedStockSymbol} />
+                }
               </Col>
             </Row>
           </Container>

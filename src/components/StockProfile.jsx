@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Sidebar from './Sidebar.jsx'
-import Primary from './Primary.jsx'
+import Sidebar from './Sidebar.jsx';
+import Primary from './Primary.jsx';
 
-import axios from 'axios'
+import axios from 'axios';
 
-import './StockProfile.css'
+import './StockProfile.css';
 
 class StockProfile extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class StockProfile extends Component {
   render() {
     const { stockQuote, stockProfile, stockRatings, stockHistoricalPrice } = this.state;
     return (
-      <Container fluid>
+      <Container>
         <Row>
           <Primary
             stockQuote={stockQuote}

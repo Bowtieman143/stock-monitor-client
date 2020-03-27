@@ -9,15 +9,16 @@ class Primary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      graphData: []
+      graphData: [],
+      timeLapse: null
     };
   }
 
-  getWeekOfData = (stockTimeSheet) => {
-    const closingDates = stockTimeSheet.reverse();
+  getHistoricalData = (stockHistoricalPriceArray, time) => {
+    const closingDates = stockHistoricalPriceArray.reverse();
     const closingWeekPrices = [];
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < time; i++) {
       let dataPoint = {};
       dataPoint.x = closingDates[i].date;
       dataPoint.y = closingDates[i].close;
@@ -26,19 +27,9 @@ class Primary extends Component {
     return closingWeekPrices;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { stockHistoricalPrice } = this.props;
-
-    if (prevProps.stockHistoricalPrice !== stockHistoricalPrice) {
-      this.setState({
-        graphData: this.getWeekOfData(stockHistoricalPrice.data.historical)
-      });
-    }
-  }
-
   render() {
     const { graphData } = this.state;
-
+    const { stockHistoricalPrice } = this.props;
     return (
       <Col id='primary' xs={12} md={8} className='p-3 p-md-4'>
         <div className="shadow-lg rounded-large pb-4">
@@ -48,13 +39,35 @@ class Primary extends Component {
           </div>
           <Nav className='justify-content-center mt-4' variant="pills" defaultActiveKey="#">
             <Nav.Item>
-              <Nav.Link href="#">Active</Nav.Link>
+              <Nav.Link onClick={() => {
+                  this.setState({
+                    graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 7)
+                  })
+                }} href="#">
+                Week
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="link-1">Option 2</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  this.setState({
+                    graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 30)
+                  })
+                }}
+                eventKey="link-1">
+                Month
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="link-2">Option 2</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  this.setState({
+                    graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 365)
+                   })
+                }}
+                eventKey="link-2">
+                Year
+              </Nav.Link>
             </Nav.Item>
           </Nav>
         </div>

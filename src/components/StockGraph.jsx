@@ -51,7 +51,6 @@ class StockGraph extends Component {
       let newGraphConfig = Object.assign({}, this.state.graphConfig);
       newGraphConfig.data.datasets[0].data = graphData;
 
-      console.log(newGraphConfig.data);
       this.setState({
         graphConfig: newGraphConfig
       });
@@ -62,8 +61,6 @@ class StockGraph extends Component {
     const { height, mobileHeight } = this.props;
     const { graphConfig } = this.state;
     const windowWidth = window.innerWidth;
-
-    console.log(graphConfig);
 
     return (
       <div className='chart bg-light'>
