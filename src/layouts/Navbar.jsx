@@ -21,40 +21,41 @@ class MainNavbar extends Component {
     this.state = {
       isSearching: false,
       doesExist: false,
-      searchedStockSymbol: ''
+      searchedStockSymbol: '',
+      companyName: '',
+      companyDescription: ''
     }
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    if (event.target.value === '') {
+    const currentSearch = event.target.value;
+
+    this.setState({
+      searchedStockSymbol: currentSearch
+    })
+    if (currentSearch === '') {
       this.setState({
-        searchedStockSymbol: event.target.value,
-        isSearching: false
+        isSearching: false,
+        doesExist: false,
+        graphData: null
       });
     } else {
-        const currentSearch = event.target.value;
         this.setState({
-         searchedStockSymbol: currentSearch,
          isSearching: true
         });
 
         axios.get(`https://financialmodelingprep.com/api/v3/historical-price-full/${currentSearch.toUpperCase()}`)
           .then((result) => {
             if (Object.keys(result.data).length === 0 && result.data.constructor === Object) {
-              console.log('this new if has run');
-              console.log(result);
               this.setState({
                 doesExist: false,
-                searchedStockSymbol: currentSearch
+                graphData: null,
               });
             } else {
-              console.log('The new else has run');
               console.log(result);
               this.setState({
                 graphData: this.getHistoricalData(result.data.historical),
-                companyName: result.data,
-                searchedStockSymbol: currentSearch,
                 doesExist: true,
               });
             }
@@ -97,51 +98,31 @@ class MainNavbar extends Component {
                 value={searchedStockSymbol}
                 onChange={this.handleChange}
               />
-              { isSearching ?
-                <Container className='d-lg-none text-white'>
-                  <Row>
-                    <Col md={3}>
-                      { doesExist ?
-                        <StockGraph graphData={graphData} />
-                          :
-                        <h2>This does not exist</h2>
-                      }
-                    </Col>
-                    <Col md={9}>
-                      <SearchStock stockSymbol={searchedStockSymbol} />
-                    </Col>
-                  </Row>
-                </Container>
-                :
-                null
-              }
+              <Container className='d-lg-none text-white'>
+                <Row>
+                  <Col md={3}>
+                    <StockGraph graphData={graphData} />
+                  </Col>
+                  <Col md={9}>
+                    <SearchStock stockSymbol={searchedStockSymbol} />
+                  </Col>
+                </Row>
+              </Container>
             </Form>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        { isSearching ?
-          <Container id='current-stock-search-result'
-            className='bg-dark rounded text-white shadow-lg d-none d-md-block py-4'>
-            <Row>
-              <Col md={4}>
-                { doesExist ?
-                  <StockGraph graphData={graphData} />
-                    :
-                  <h2>This does not exist</h2>
-                }
-              </Col>
-              <Col md={8}>
-                { doesExist ?
-                  <SearchStock companyName={this.state.companyName} stockSymbol={searchedStockSymbol} />
-                  :
-                  <SearchStock stockSymbol={searchedStockSymbol} />
-                }
-              </Col>
-            </Row>
-          </Container>
-          :
-          null
-        }
+        <Container id='current-stock-search-result'
+          className='bg-dark rounded text-white shadow-lg d-none d-md-block py-4'>
+          <Row>
+            <Col md={4}>
+              <StockGraph graphData={graphData} />
+            </Col>
+            <Col md={8}>
+              <SearchStock stockSymbol={searchedStockSymbol} />
+            </Col>
+          </Row>
+        </Container>
       </Fragment>
     );
   }
