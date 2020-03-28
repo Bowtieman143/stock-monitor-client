@@ -23,14 +23,12 @@ class MainNavbar extends Component {
       doesExist: false,
       searchedStockSymbol: '',
       companyName: '',
-      companyDescription: ''
     }
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     const currentSearch = event.target.value;
-
     this.setState({
       searchedStockSymbol: currentSearch
     })
@@ -38,13 +36,13 @@ class MainNavbar extends Component {
       this.setState({
         isSearching: false,
         doesExist: false,
-        graphData: null
+        graphData: null,
+        companyData: null
       });
     } else {
         this.setState({
          isSearching: true
         });
-
         axios.get(`https://financialmodelingprep.com/api/v3/historical-price-full/${currentSearch.toUpperCase()}`)
           .then((result) => {
             if (Object.keys(result.data).length === 0 && result.data.constructor === Object) {
@@ -53,11 +51,11 @@ class MainNavbar extends Component {
                 graphData: null,
               });
             } else {
-              console.log(result);
               this.setState({
                 graphData: this.getHistoricalData(result.data.historical),
                 doesExist: true,
               });
+              this.getCompanyData(currentSearch.toUpperCase())
             }
           })
           .catch((err) => {
@@ -79,8 +77,27 @@ class MainNavbar extends Component {
     return closingWeekPrices;
   }
 
+  getCompanyData = (stockSymbol) => {
+    const stockProfile = axios.get(`https://financialmodelingprep.com/api/v3/company/profile/${stockSymbol.toUpperCase()}`);
+    const stockRatings = axios.get(`https://financialmodelingprep.com/api/v3/company/rating/${stockSymbol.toUpperCase()}`);
+    const stockQuote = axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockSymbol.toUpperCase()}`);
+
+    Promise.all([stockProfile, stockRatings, stockQuote])
+     .then((result) => {
+       this.setState({
+         stockProfile: result[0],
+         stockRatings: result[1],
+         stockQuote: result[2]
+       })
+     })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   render() {
-    const { doesExist, isSearching, searchedStockSymbol, graphData } = this.state;
+    const { doesExist, isSearching, searchedStockSymbol, graphData,
+      stockRatings, stockProfile, stockQuote} = this.state;
 
     return (
       <Fragment>
@@ -98,31 +115,53 @@ class MainNavbar extends Component {
                 value={searchedStockSymbol}
                 onChange={this.handleChange}
               />
-              <Container className='d-lg-none text-white'>
-                <Row>
-                  <Col md={3}>
-                    <StockGraph graphData={graphData} />
-                  </Col>
-                  <Col md={9}>
-                    <SearchStock stockSymbol={searchedStockSymbol} />
-                  </Col>
-                </Row>
-              </Container>
+              { isSearching ?
+                <Container className='d-lg-none text-white my-4'>
+                  <Row>
+                    <Col md={3}>
+                      <StockGraph graphData={graphData} />
+                    </Col>
+                    <Col md={9}>
+                    { doesExist ?
+                      <SearchStock
+                        stockProfile={stockProfile}
+                        stockQuote={stockQuote}
+                        stockRatings={stockRatings} />
+                        :
+                      <h3>This stock does not exist</h3>
+                    }
+                    </Col>
+                  </Row>
+                </Container>
+                :
+                null
+              }
             </Form>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <Container id='current-stock-search-result'
-          className='bg-dark rounded text-white shadow-lg d-none d-md-block py-4'>
-          <Row>
-            <Col md={4}>
-              <StockGraph graphData={graphData} />
-            </Col>
-            <Col md={8}>
-              <SearchStock stockSymbol={searchedStockSymbol} />
-            </Col>
-          </Row>
-        </Container>
+        { isSearching ?
+          <Container id='current-stock-search-result'
+            className='bg-dark rounded text-white shadow-lg d-none d-md-block py-4'>
+            <Row>
+              <Col md={4}>
+                <StockGraph graphData={graphData} />
+              </Col>
+              <Col md={8}>
+              { doesExist ?
+                <SearchStock
+                  stockProfile={stockProfile}
+                  stockQuote={stockQuote}
+                  stockRatings={stockRatings} />
+                  :
+                <h3>This stock does not exist</h3>
+              }
+              </Col>
+            </Row>
+          </Container>
+           :
+          null
+        }
       </Fragment>
     );
   }

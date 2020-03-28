@@ -41,7 +41,7 @@ class StockGraph extends Component {
 
   static defaultProps = {
     height: 200,
-    mobileHeight: 300,
+    mobileHeight: 150,
   }
 
   componentDidUpdate(prevProps, prevState) {
