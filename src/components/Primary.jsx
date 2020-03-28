@@ -15,13 +15,13 @@ class Primary extends Component {
   }
 
   getHistoricalData = (stockHistoricalPriceArray, time) => {
-    const closingDates = stockHistoricalPriceArray.reverse();
+    stockHistoricalPriceArray = stockHistoricalPriceArray.reverse();
     const closingWeekPrices = [];
 
     for (let i = 0; i < time; i++) {
       let dataPoint = {};
-      dataPoint.x = closingDates[i].date;
-      dataPoint.y = closingDates[i].close;
+      dataPoint.x = stockHistoricalPriceArray[i].date;
+      dataPoint.y = stockHistoricalPriceArray[i].close;
       closingWeekPrices.push(dataPoint);
     }
     return closingWeekPrices;
