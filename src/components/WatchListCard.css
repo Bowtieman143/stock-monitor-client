@@ -4,7 +4,5 @@
 }
 
 @media (max-width: 767.98px) {
-  .card {
-    display: table-cell !important; 
-  }
+
 }
