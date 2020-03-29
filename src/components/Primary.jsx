@@ -15,13 +15,13 @@ class Primary extends Component {
   }
 
   getHistoricalData = (stockHistoricalPriceArray, time) => {
-    stockHistoricalPriceArray = stockHistoricalPriceArray.reverse();
+    const stockHistoricalPriceArrayInOrder = [...stockHistoricalPriceArray].reverse();
     const closingWeekPrices = [];
 
     for (let i = 0; i < time; i++) {
       let dataPoint = {};
-      dataPoint.x = stockHistoricalPriceArray[i].date;
-      dataPoint.y = stockHistoricalPriceArray[i].close;
+      dataPoint.x = stockHistoricalPriceArrayInOrder[i].date;
+      dataPoint.y = stockHistoricalPriceArrayInOrder[i].close;
       closingWeekPrices.push(dataPoint);
     }
     return closingWeekPrices;
@@ -42,7 +42,7 @@ class Primary extends Component {
               <Nav.Link onClick={() => {
                   this.setState({
                     graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 7)
-                  })
+                  });
                 }} href="#">
                 Week
               </Nav.Link>
@@ -52,7 +52,7 @@ class Primary extends Component {
                 onClick={() => {
                   this.setState({
                     graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 30)
-                  })
+                  });
                 }}
                 eventKey="link-1">
                 Month
@@ -63,7 +63,7 @@ class Primary extends Component {
                 onClick={() => {
                   this.setState({
                     graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 365)
-                   })
+                  });
                 }}
                 eventKey="link-2">
                 Year

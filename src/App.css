@@ -1,10 +1,6 @@
-body {
-
-}
-
 #watch-list-card-container {
-  flex-flow: nowrap !important;
-  overflow-x: auto !important;
+  flex-flow: column !important;
+  overflow-y: auto !important;
   scroll-behavior: smooth;
 }
 

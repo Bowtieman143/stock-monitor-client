@@ -11,3 +11,21 @@
 .rounded-large {
   border-radius: 12px;
 }
+
+#watchlistViewBtn {
+  transform-origin: center;
+  margin-left: -26px;
+  vertical-align:top;
+  transform:rotate(90deg);
+}
+
+#watchListCardContainer {
+  max-width: 255px;
+  height: 300px;
+  overflow-y: auto;
+}
+
+#watchlistViewBtnContainer {
+  height: 300px;
+  max-width: 30px !important;
+}

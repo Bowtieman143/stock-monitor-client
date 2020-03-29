@@ -14,7 +14,7 @@ class Footer extends Component {
     return (
       <Fragment>
         <div className='bg-dark text-white'>
-          <Container fluid>
+          <Container>
             <Row className='py-3'>
               <Col xs={12} md={4} className='mt-3 mt-md-auto'>he industry's standard dummy text ever since the 1500s, when an
               unknown printer took a galley of type and scrambled it to make a type

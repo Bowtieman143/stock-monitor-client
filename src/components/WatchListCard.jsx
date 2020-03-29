@@ -15,7 +15,7 @@ class WatchListCard extends Component {
 
   render() {
     return (
-      <Card className='watch-list-card'>
+      <Card className='watch-list-card d-block m-0'>
         <Card.Header>Featured</Card.Header>
         <ListGroup variant="flush">
           <ListGroup.Item>Cras justo odio</ListGroup.Item>

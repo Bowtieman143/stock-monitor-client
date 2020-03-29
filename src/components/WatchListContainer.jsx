@@ -12,7 +12,7 @@ class WatchListContainer extends Component {
   render() {
     return (
       <Fragment>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        { /* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -23,7 +23,7 @@ class WatchListContainer extends Component {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */ }
         <CardGroup id='watch-list-card-container' className="justify-content-left">
           <WatchListCard />
           <WatchListCard />
