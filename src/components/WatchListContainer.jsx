@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import CardGroup from 'react-bootstrap/CardGroup';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import WatchListCard from './WatchListCard.jsx';
 
 class WatchListContainer extends Component {

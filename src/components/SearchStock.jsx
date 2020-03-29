@@ -22,7 +22,7 @@ class SearchStock extends Component {
 
   render() {
     const { containsContent } = this.state;
-    const { stockQuote, stockProfile, stockRatings } = this.props;
+    const { stockProfile } = this.props;
     console.log(stockProfile);
     return (
       <Fragment>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import NewsCarousel from './NewsCarousel.jsx';
-import ViewNewsTab from './ViewNewsTab.jsx';
 
 import './Sidebar.css';
 

@@ -22,7 +22,7 @@
 #watchListCardContainer {
   max-width: 255px;
   height: 300px;
-  overflow-y: auto;
+  overflow-y: scroll !important;
 }
 
 #watchlistViewBtnContainer {
