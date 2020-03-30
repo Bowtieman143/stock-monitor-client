@@ -22,7 +22,7 @@ class Sidebar extends Component {
         </div>
         <div className='rounded-large shadow-lg my-3'>
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>Ratings</h5>
-          <div className='d-flex justify-content-center text-center px-3' style={{flexWrap: 'wrap'}}>
+          <div className='d-flex justify-content-center text-center px-3 py-2' style={{flexWrap: 'wrap'}}>
             <RatingCard />
             <RatingCard />
             <RatingCard />

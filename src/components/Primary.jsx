@@ -32,7 +32,7 @@ class Primary extends Component {
     const { graphData } = this.state;
     const { stockHistoricalPrice, stockProfile } = this.props;
     return (
-      <Col id='primary' xs={12} md={8} className='px-3 p-md-4'>
+      <Col id='primary' xs={12} md={8} className='px-3'>
         <div className="shadow-lg rounded-large pb-4">
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>This is the header</h5>
           <div className='px-2 px-md-4'>
