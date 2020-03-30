@@ -94,7 +94,7 @@ class MainNavbar extends Component {
 
   render() {
     const { doesExist, isSearching, searchedStockSymbol, graphData,
-      stockRatings, stockProfile, stockQuote} = this.state;
+      stockProfile} = this.state;
 
     return (
       <Fragment>

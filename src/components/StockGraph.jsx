@@ -47,15 +47,16 @@ class StockGraph extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { graphData } = this.props;
 
-    if (prevProps.graphData !== graphData) {
+    if (prevProps !== this.props) {
       let newGraphConfig = Object.assign({}, this.state.graphConfig);
       newGraphConfig.data.datasets[0].data = graphData;
-
       this.setState({
         graphConfig: newGraphConfig
       });
     }
   }
+
+
 
   render() {
     const { height, mobileHeight } = this.props;
@@ -64,13 +65,11 @@ class StockGraph extends Component {
 
     return (
       <div className='chart bg-light'>
-
         <Line
           height={windowWidth > 1000 ? height : mobileHeight}
           data={graphConfig.data}
           options={graphConfig.options}
         />
-
       </div>
     );
   }

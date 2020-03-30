@@ -12,7 +12,6 @@ class StockProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStock: 'CLDR',
       containsAllCompanyData: false,
       stockProfile: {},
       stockRatings: {},
@@ -22,8 +21,16 @@ class StockProfile extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      const { currentStock } = this.props;
+      this.getAllCurrentStockInformation(currentStock);
+    }
+  }
+
   componentDidMount() {
-    this.getAllCurrentStockInformation(this.state.currentStock);
+    const { currentStock } = this.props;
+    this.getAllCurrentStockInformation(currentStock);
   }
 
   getAllCurrentStockInformation = (stockSymbol) => {
@@ -49,6 +56,7 @@ class StockProfile extends Component {
 
   render() {
     const { stockQuote, stockProfile, stockRatings, stockHistoricalPrice, stockNews } = this.state;
+
     return (
       <Container className='py-5'>
         <Row>

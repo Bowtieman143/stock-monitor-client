@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 
 import Media from 'react-bootstrap/Media';
 import Spinner from 'react-bootstrap/Spinner';
-import axios from 'axios';
 
 import './NewsCarousel.css'
 
