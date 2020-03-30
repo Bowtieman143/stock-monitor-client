@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
 import SearchStock from '../components/SearchStock.jsx';
 import StockGraph from '../components/StockGraph.jsx';
@@ -79,15 +80,11 @@ class MainNavbar extends Component {
 
   getCompanyData = (stockSymbol) => {
     const stockProfile = axios.get(`https://financialmodelingprep.com/api/v3/company/profile/${stockSymbol.toUpperCase()}`);
-    const stockRatings = axios.get(`https://financialmodelingprep.com/api/v3/company/rating/${stockSymbol.toUpperCase()}`);
-    const stockQuote = axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockSymbol.toUpperCase()}`);
 
-    Promise.all([stockProfile, stockRatings, stockQuote])
+    Promise.all([stockProfile])
      .then((result) => {
        this.setState({
-         stockProfile: result[0],
-         stockRatings: result[1],
-         stockQuote: result[2]
+         stockProfile: result[0]
        })
      })
     .catch((err) => {
@@ -124,11 +121,11 @@ class MainNavbar extends Component {
                     <Col md={9}>
                     { doesExist ?
                       <SearchStock
-                        stockProfile={stockProfile}
-                        stockQuote={stockQuote}
-                        stockRatings={stockRatings} />
+                        stockProfile={stockProfile}/>
                         :
-                      <h3>This stock does not exist</h3>
+                        <Alert variant='danger'>
+                          Sorry we could not find that stock.. Please make sure you are typing the right symbol.
+                        </Alert>
                     }
                     </Col>
                   </Row>
@@ -150,11 +147,11 @@ class MainNavbar extends Component {
               <Col md={8}>
               { doesExist ?
                 <SearchStock
-                  stockProfile={stockProfile}
-                  stockQuote={stockQuote}
-                  stockRatings={stockRatings} />
+                  stockProfile={stockProfile}/>
                   :
-                <h3>This stock does not exist</h3>
+                  <Alert variant='danger'>
+                    Sorry we could not find that stock.. Please make sure you are typing the right symbol.
+                  </Alert>
               }
               </Col>
             </Row>
