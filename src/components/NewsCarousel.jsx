@@ -29,7 +29,7 @@ class NewsCarousel extends Component {
     return (
       <Fragment>
         { containsData ?
-          stockNews.data.data.map((article, idx) =>
+          stockNews.data.data.slice(0, 10).map((article, idx) =>
             <Media key={idx} className='alternate-articles p-0'>
               <img width={50} height={50} className='mr-3' src={article.image_url} alt='Generic placeholder'/>
               <Media.Body className='px-2'>
