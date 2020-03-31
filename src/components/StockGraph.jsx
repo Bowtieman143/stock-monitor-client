@@ -56,8 +56,6 @@ class StockGraph extends Component {
     }
   }
 
-
-
   render() {
     const { height, mobileHeight } = this.props;
     const { graphConfig } = this.state;
