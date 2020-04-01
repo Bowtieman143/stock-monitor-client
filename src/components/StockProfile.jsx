@@ -33,29 +33,51 @@ class StockProfile extends Component {
     this.getAllCurrentStockInformation(currentStock);
   }
 
-  getAllCurrentStockInformation = (stockSymbol) => {
-    const stockProfile = axios.get(`https://financialmodelingprep.com/api/v3/company/profile/${stockSymbol.toUpperCase()}`);
-    const stockRatings = axios.get(`https://financialmodelingprep.com/api/v3/company/rating/${stockSymbol.toUpperCase()}`);
-    const stockQuote = axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockSymbol.toUpperCase()}`);
-    const stockHistoricalPrice = axios.get(`https://financialmodelingprep.com/api/v3/historical-price-full/${stockSymbol.toUpperCase()}`);
-    const stockNews = axios.get(`https://stocknewsapi.com/api/v1?tickers=${stockSymbol.toUpperCase()}&items=50&token=pudtkelo3pemsxaegt7pa4edyfcaref32lx9utoo`)
+  getAllCurrentStockInformation = stockSymbol => {
+    const stockProfile = axios.get(
+      `https://financialmodelingprep.com/api/v3/company/profile/${stockSymbol.toUpperCase()}`
+    );
+    const stockRatings = axios.get(
+      `https://financialmodelingprep.com/api/v3/company/rating/${stockSymbol.toUpperCase()}`
+    );
+    const stockQuote = axios.get(
+      `https://financialmodelingprep.com/api/v3/quote/${stockSymbol.toUpperCase()}`
+    );
+    const stockHistoricalPrice = axios.get(
+      `https://financialmodelingprep.com/api/v3/historical-price-full/${stockSymbol.toUpperCase()}`
+    );
+    const stockNews = axios.get(
+      `https://stocknewsapi.com/api/v1?tickers=${stockSymbol.toUpperCase()}&items=50&token=pudtkelo3pemsxaegt7pa4edyfcaref32lx9utoo`
+    );
 
-    Promise.all([stockProfile, stockRatings, stockQuote, stockHistoricalPrice, stockNews])
-     .then((result) => {
-       this.setState({
-         containsAllCompanyData: true,
-         stockProfile: result[0],
-         stockRatings: result[1],
-         stockQuote: result[2],
-         stockHistoricalPrice: result[3],
-         stockNews: result[4]
-       });
-     })
-     .catch(error => console.log(`Error in promises ${error}`))
-  }
+    Promise.all([
+      stockProfile,
+      stockRatings,
+      stockQuote,
+      stockHistoricalPrice,
+      stockNews
+    ])
+      .then(result => {
+        this.setState({
+          containsAllCompanyData: true,
+          stockProfile: result[0],
+          stockRatings: result[1],
+          stockQuote: result[2],
+          stockHistoricalPrice: result[3],
+          stockNews: result[4]
+        });
+      })
+      .catch(error => console.log(`Error in promises ${error}`));
+  };
 
   render() {
-    const { stockQuote, stockProfile, stockRatings, stockHistoricalPrice, stockNews } = this.state;
+    const {
+      stockQuote,
+      stockProfile,
+      stockRatings,
+      stockHistoricalPrice,
+      stockNews
+    } = this.state;
 
     return (
       <Container className='py-5'>
@@ -65,15 +87,11 @@ class StockProfile extends Component {
             stockProfile={stockProfile}
             stockHistoricalPrice={stockHistoricalPrice}
           />
-          <Sidebar
-            stockRatings={stockRatings}
-            stockNews={stockNews}
-          />
+          <Sidebar stockRatings={stockRatings} stockNews={stockNews} />
         </Row>
       </Container>
     );
   }
-
 }
 
 export default StockProfile;

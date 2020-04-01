@@ -16,7 +16,9 @@ class Primary extends Component {
   }
 
   getHistoricalData = (stockHistoricalPriceArray, time) => {
-    const stockHistoricalPriceArrayInOrder = [...stockHistoricalPriceArray].reverse();
+    const stockHistoricalPriceArrayInOrder = [
+      ...stockHistoricalPriceArray
+    ].reverse();
     const closingWeekPrices = [];
 
     for (let i = 0; i < time; i++) {
@@ -26,15 +28,18 @@ class Primary extends Component {
       closingWeekPrices.push(dataPoint);
     }
     return closingWeekPrices;
-  }
+  };
 
   componentDidUpdate(prevProps, prevState) {
     const { stockHistoricalPrice } = this.props;
     const { timeLapse } = this.state;
     if (prevProps !== this.props) {
       this.setState({
-        graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, timeLapse)
-      })
+        graphData: this.getHistoricalData(
+          stockHistoricalPrice.data.historical,
+          timeLapse
+        )
+      });
     }
   }
 
@@ -43,20 +48,31 @@ class Primary extends Component {
     const { stockHistoricalPrice, stockProfile } = this.props;
     return (
       <Col id='primary' xs={12} md={8} className='px-3'>
-        <div className="shadow-lg rounded-large pb-4">
-          <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>This is the header</h5>
+        <div className='shadow-lg rounded-large pb-4'>
+          <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
+            This is the header
+          </h5>
           <div className='px-2 px-md-4'>
             <StockGraph height={100} mobileHeight={250} graphData={graphData} />
           </div>
-          <Nav className='justify-content-center mt-4' variant="pills" defaultActiveKey="link-1">
+          <Nav
+            className='justify-content-center mt-4'
+            variant='pills'
+            defaultActiveKey='link-1'
+          >
             <Nav.Item>
-              <Nav.Link onSelect={() => {
+              <Nav.Link
+                onSelect={() => {
                   this.setState({
-                    graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 7),
+                    graphData: this.getHistoricalData(
+                      stockHistoricalPrice.data.historical,
+                      7
+                    ),
                     timeLapse: 7
                   });
                 }}
-                eventKey="link-1">
+                eventKey='link-1'
+              >
                 Week
               </Nav.Link>
             </Nav.Item>
@@ -64,11 +80,15 @@ class Primary extends Component {
               <Nav.Link
                 onSelect={() => {
                   this.setState({
-                    graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 30),
+                    graphData: this.getHistoricalData(
+                      stockHistoricalPrice.data.historical,
+                      30
+                    ),
                     timeLapse: 30
                   });
                 }}
-                eventKey="link-2">
+                eventKey='link-2'
+              >
                 Month
               </Nav.Link>
             </Nav.Item>
@@ -76,42 +96,45 @@ class Primary extends Component {
               <Nav.Link
                 onSelect={() => {
                   this.setState({
-                    graphData: this.getHistoricalData(stockHistoricalPrice.data.historical, 365),
+                    graphData: this.getHistoricalData(
+                      stockHistoricalPrice.data.historical,
+                      365
+                    ),
                     timeLapse: 365
                   });
                 }}
-                eventKey="link-3">
+                eventKey='link-3'
+              >
                 Year
               </Nav.Link>
             </Nav.Item>
           </Nav>
         </div>
-        <div className="shadow-lg rounded-large pb-4 my-3">
-          <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>Company Profile</h5>
-          <div className="px-4">
-            { stockProfile.data !== undefined ?
+        <div className='shadow-lg rounded-large pb-4 my-3'>
+          <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
+            Company Profile
+          </h5>
+          <div className='px-4'>
+            {stockProfile.data !== undefined ? (
               <Media>
                 <img
                   width={64}
                   height={64}
-                  className="mr-3"
+                  className='mr-3'
                   src={stockProfile.data.profile.image}
-                  alt="Generic placeholder"
+                  alt='Generic placeholder'
                 />
                 <Media.Body>
                   <h5>{stockProfile.data.profile.companyName}</h5>
                   <p>{stockProfile.data.profile.description}</p>
                 </Media.Body>
               </Media>
-                :
-              null
-            }
+            ) : null}
           </div>
         </div>
       </Col>
     );
   }
-
 }
 
 export default Primary;

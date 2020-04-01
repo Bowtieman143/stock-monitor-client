@@ -22,45 +22,53 @@ class HomePage extends Component {
     this.changeStockProfileData = this.changeStockProfileData.bind(this);
   }
 
-  changeStockProfileData = (stockSymbol) => {
+  changeStockProfileData = stockSymbol => {
     this.setState({
       currentStock: stockSymbol
     });
-  }
+  };
 
   render() {
     const { showWatchList, currentStock } = this.state;
     return (
       <Fragment>
         <Navbar />
-        <Container className='position-fixed' style={{zIndex: 1, top: 100, maxWidth: '295px'}}>
+        <Container
+          className='position-fixed'
+          style={{ zIndex: 1, top: 100, maxWidth: '295px' }}
+        >
           <Row>
-            { showWatchList ?
+            {showWatchList ? (
               <Col id='watchListCardContainer' className='shadow-lg p-0'>
-                <WatchListContainer changeStockProfileData={this.changeStockProfileData}/>
+                <WatchListContainer
+                  changeStockProfileData={this.changeStockProfileData}
+                />
               </Col>
-                :
-              null
-            }
-            <Col id='watchlistViewBtnContainer' className='d-flex align-items-center p-0'>
-              <Button id='watchlistViewBtn' onClick={() => {
-                if (showWatchList === true) {
-                  this.setState({showWatchList: false});
-                } else {
-                  this.setState({showWatchList: true});
-                }
-              }}>
+            ) : null}
+            <Col
+              id='watchlistViewBtnContainer'
+              className='d-flex align-items-center p-0'
+            >
+              <Button
+                id='watchlistViewBtn'
+                onClick={() => {
+                  if (showWatchList === true) {
+                    this.setState({ showWatchList: false });
+                  } else {
+                    this.setState({ showWatchList: true });
+                  }
+                }}
+              >
                 Watchlist
               </Button>
             </Col>
           </Row>
         </Container>
-        <StockProfile currentStock={currentStock}/>
+        <StockProfile currentStock={currentStock} />
         <Footer />
       </Fragment>
     );
   }
-
 }
 
 export default HomePage;

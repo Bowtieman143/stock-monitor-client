@@ -7,6 +7,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
+import Media from 'react-bootstrap/Media';
 import Col from 'react-bootstrap/Col';
 import SearchStock from '../components/SearchStock.jsx';
 import StockGraph from '../components/StockGraph.jsx';
@@ -82,11 +83,11 @@ class MainNavbar extends Component {
     const stockProfile = axios.get(`https://financialmodelingprep.com/api/v3/company/profile/${stockSymbol.toUpperCase()}`);
 
     Promise.all([stockProfile])
-     .then((result) => {
-       this.setState({
-         stockProfile: result[0]
-       })
-     })
+    .then((result) => {
+      this.setState({
+       stockProfile: result[0]
+      })
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -103,11 +104,9 @@ class MainNavbar extends Component {
             <Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='mr-auto'>
-            </Nav>
-            <Form inline>
+            <Form className='ml-auto py-3 py-md-0' inline>
               <FormControl type='text'
-                placeholder='Search'
+                placeholder='Search Stcok Symbols'
                 className='mr-sm-2'
                 value={searchedStockSymbol}
                 onChange={this.handleChange}
@@ -146,8 +145,8 @@ class MainNavbar extends Component {
               </Col>
               <Col md={8}>
               { doesExist ?
-                <SearchStock
-                  stockProfile={stockProfile}/>
+                  <SearchStock
+                    stockProfile={stockProfile}/>
                   :
                   <Alert variant='danger'>
                     Sorry we could not find that stock.. Please make sure you are typing the right symbol.

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
-import './StockGraph.css'
+import './StockGraph.css';
 
 class StockGraph extends Component {
   constructor(props) {
@@ -9,40 +9,44 @@ class StockGraph extends Component {
     this.state = {
       graphConfig: {
         data: {
-          datasets: [{
-            label: '# of Votes',
-            data: [],
-            backgroundColor: [
-                'rgba(255, 159, 64, 0.2)'
-            ]
-          }]
+          datasets: [
+            {
+              label: '# of Votes',
+              data: [],
+              backgroundColor: ['rgba(255, 159, 64, 0.2)']
+            }
+          ]
         },
         options: {
           responsive: true,
           legend: {
             display: true,
-            position: "top"
+            position: 'top'
           },
           scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              },
-            }],
-            xAxes: [{
-              type: 'time',
-              distribution: 'series'
-            }]
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ],
+            xAxes: [
+              {
+                type: 'time',
+                distribution: 'series'
+              }
+            ]
           }
         }
       }
-    }
+    };
   }
 
   static defaultProps = {
     height: 200,
-    mobileHeight: 150,
-  }
+    mobileHeight: 150
+  };
 
   componentDidUpdate(prevProps, prevState) {
     const { graphData } = this.props;
