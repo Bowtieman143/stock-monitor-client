@@ -19,6 +19,7 @@ class Primary extends Component {
     const stockHistoricalPriceArrayInOrder = [
       ...stockHistoricalPriceArray
     ].reverse();
+
     const closingWeekPrices = [];
 
     for (let i = 0; i < time; i++) {
