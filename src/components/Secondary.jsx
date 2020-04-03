@@ -2,8 +2,10 @@ import React, { Component, Fragment } from 'react';
 import Col from 'react-bootstrap/Col';
 import NewsCarousel from './NewsCarousel.jsx';
 import RatingCard from './RatingCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faNewspaper, faStar } from '@fortawesome/free-solid-svg-icons';
 
-import './Sidebar.css';
+import './Secondary.css';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -18,7 +20,8 @@ class Sidebar extends Component {
       <Col id='sidebar' xs={12} md={4} className='px-3'>
         <div className='rounded-large shadow-lg'>
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
-            Articles
+            <span className='mr-2'>Articles</span>
+            <FontAwesomeIcon icon={faNewspaper} size='sm' />
           </h5>
           <div id='news-articles' className='px-3'>
             <NewsCarousel stockNews={stockNews} />
@@ -26,7 +29,8 @@ class Sidebar extends Component {
         </div>
         <div className='rounded-large shadow-lg my-3'>
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
-            Ratings
+            <span className='mr-2'>Ratings</span>
+            <FontAwesomeIcon icon={faStar} size='sm' />
           </h5>
           <div
             className='d-flex justify-content-center text-center px-3 py-2'

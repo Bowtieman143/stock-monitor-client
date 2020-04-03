@@ -13,7 +13,8 @@ class StockGraph extends Component {
             {
               label: '# of Votes',
               data: [],
-              backgroundColor: ['rgba(255, 159, 64, 0.2)']
+              backgroundColor: ['rgba(255, 50, 24, 0.5)'],
+              lineTension: 0
             }
           ]
         },
@@ -66,7 +67,7 @@ class StockGraph extends Component {
     const windowWidth = window.innerWidth;
 
     return (
-      <div className='chart bg-light'>
+      <div className='chart'>
         <Line
           height={windowWidth > 1000 ? height : mobileHeight}
           data={graphConfig.data}

@@ -4,10 +4,6 @@ import Card from 'react-bootstrap/Card';
 import './RatingCard.css';
 
 class RatingCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     const { score, recommendation, companyName } = this.props;
     const starsArray = [];

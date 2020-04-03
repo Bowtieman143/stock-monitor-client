@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
-import Sidebar from './Sidebar.jsx';
+import Secondary from './Secondary.jsx';
 import Primary from './Primary.jsx';
 
 import axios from 'axios';
@@ -91,7 +91,7 @@ class StockProfile extends Component {
                 stockProfile={stockProfile}
                 stockHistoricalPrice={stockHistoricalPrice}
               />
-              <Sidebar stockRatings={stockRatings} stockNews={stockNews} />
+              <Secondary stockRatings={stockRatings} stockNews={stockNews} />
             </Fragment>
           ) : (
             <Spinner animation='grow' />

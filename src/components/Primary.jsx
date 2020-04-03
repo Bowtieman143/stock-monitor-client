@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Media from 'react-bootstrap/Media';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChartLine,
+  faQuestionCircle
+} from '@fortawesome/free-solid-svg-icons';
 import StockGraph from './StockGraph.jsx';
 
 import './Primary.css';
@@ -64,7 +69,8 @@ class Primary extends Component {
       <Col id='primary' xs={12} md={8} className='px-3'>
         <div className='shadow-lg rounded-large pb-4'>
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
-            Stock Graph
+            <span className='mr-2'>Stock Graph</span>
+            <FontAwesomeIcon icon={faChartLine} size='sm' />
           </h5>
           <div className='px-2 px-md-4'>
             <StockGraph height={100} mobileHeight={250} graphData={graphData} />
@@ -126,7 +132,8 @@ class Primary extends Component {
         </div>
         <div className='shadow-lg rounded-large pb-4 my-3'>
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
-            Company Profile
+            <span className='mr-2'>Company Information</span>
+            <FontAwesomeIcon icon={faQuestionCircle} size='sm' />
           </h5>
           <div className='px-4'>
             {stockProfile.data !== undefined ? (
