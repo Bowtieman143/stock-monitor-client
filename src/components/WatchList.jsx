@@ -3,7 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-class WatchListContainer extends Component {
+import './WatchList.css';
+
+class WatchList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -65,4 +67,4 @@ class WatchListContainer extends Component {
   }
 }
 
-export default WatchListContainer;
+export default WatchList;

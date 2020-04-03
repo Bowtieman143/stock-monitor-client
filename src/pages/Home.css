@@ -15,8 +15,8 @@
 #watchlistViewBtn {
   transform-origin: center;
   margin-left: -26px;
-  vertical-align:top;
-  transform:rotate(90deg);
+  vertical-align: top;
+  transform: rotate(90deg);
 }
 
 #watchListCardContainer {

@@ -7,7 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import StockProfile from '../components/StockProfile.jsx';
-import WatchListContainer from '../components/WatchListContainer.jsx';
+import WatchList from '../components/WatchList.jsx';
+import Sidebar from '../layouts/Sidebar.jsx';
 
 // CSS STYLES
 import './Home.css';
@@ -33,38 +34,50 @@ class HomePage extends Component {
     return (
       <Fragment>
         <Navbar />
-        <Container
-          className='position-fixed'
-          style={{ zIndex: 1, top: 100, maxWidth: '295px' }}
-        >
+        <Container fluid>
           <Row>
-            {showWatchList ? (
-              <Col id='watchListCardContainer' className='shadow-lg p-0'>
-                <WatchListContainer
-                  changeStockProfileData={this.changeStockProfileData}
-                />
-              </Col>
-            ) : null}
             <Col
-              id='watchlistViewBtnContainer'
-              className='d-flex align-items-center p-0'
+              style={{ maxWidth: '15%' }}
+              className='bg-dark d-none d-sm-block'
             >
-              <Button
-                id='watchlistViewBtn'
-                onClick={() => {
-                  if (showWatchList === true) {
-                    this.setState({ showWatchList: false });
-                  } else {
-                    this.setState({ showWatchList: true });
-                  }
-                }}
+              <Sidebar />
+            </Col>
+            <Col style={{ maxWidth: '85%' }} className='p-0'>
+              <Container
+                className='position-fixed'
+                style={{ zIndex: 1, top: 100, maxWidth: '295px' }}
               >
-                Watchlist
-              </Button>
+                <Row>
+                  {showWatchList ? (
+                    <Col id='watchListCardContainer' className='shadow-lg p-0'>
+                      <WatchList
+                        changeStockProfileData={this.changeStockProfileData}
+                      />
+                    </Col>
+                  ) : null}
+                  <Col
+                    id='watchlistViewBtnContainer'
+                    className='d-flex align-items-center p-0'
+                  >
+                    <Button
+                      id='watchlistViewBtn'
+                      onClick={() => {
+                        if (showWatchList === true) {
+                          this.setState({ showWatchList: false });
+                        } else {
+                          this.setState({ showWatchList: true });
+                        }
+                      }}
+                    >
+                      Watchlist
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
+              <StockProfile currentStock={currentStock} />
             </Col>
           </Row>
         </Container>
-        <StockProfile currentStock={currentStock} />
         <Footer />
       </Fragment>
     );

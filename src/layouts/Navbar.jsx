@@ -4,14 +4,11 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
-import Media from 'react-bootstrap/Media';
 import Col from 'react-bootstrap/Col';
 import SearchStock from '../components/SearchStock.jsx';
 import StockGraph from '../components/StockGraph.jsx';
-
 import axios from 'axios';
 
 // Component css

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Spinner from 'react-bootstrap/Spinner';
 import Sidebar from './Sidebar.jsx';
 import Primary from './Primary.jsx';
 
@@ -76,18 +77,25 @@ class StockProfile extends Component {
       stockProfile,
       stockRatings,
       stockHistoricalPrice,
-      stockNews
+      stockNews,
+      containsAllCompanyData
     } = this.state;
 
     return (
       <Container className='py-5'>
         <Row>
-          <Primary
-            stockQuote={stockQuote}
-            stockProfile={stockProfile}
-            stockHistoricalPrice={stockHistoricalPrice}
-          />
-          <Sidebar stockRatings={stockRatings} stockNews={stockNews} />
+          {containsAllCompanyData ? (
+            <Fragment>
+              <Primary
+                stockQuote={stockQuote}
+                stockProfile={stockProfile}
+                stockHistoricalPrice={stockHistoricalPrice}
+              />
+              <Sidebar stockRatings={stockRatings} stockNews={stockNews} />
+            </Fragment>
+          ) : (
+            <Spinner animation='grow' />
+          )}
         </Row>
       </Container>
     );

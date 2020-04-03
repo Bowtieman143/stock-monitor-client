@@ -34,6 +34,7 @@ class Primary extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { stockHistoricalPrice } = this.props;
     const { timeLapse } = this.state;
+
     if (prevProps !== this.props) {
       this.setState({
         graphData: this.getHistoricalData(
@@ -44,6 +45,18 @@ class Primary extends Component {
     }
   }
 
+  componentDidMount() {
+    const { stockHistoricalPrice } = this.props;
+    const { timeLapse } = this.state;
+
+    this.setState({
+      graphData: this.getHistoricalData(
+        stockHistoricalPrice.data.historical,
+        timeLapse
+      )
+    });
+  }
+
   render() {
     const { graphData } = this.state;
     const { stockHistoricalPrice, stockProfile } = this.props;
@@ -51,7 +64,7 @@ class Primary extends Component {
       <Col id='primary' xs={12} md={8} className='px-3'>
         <div className='shadow-lg rounded-large pb-4'>
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
-            This is the header
+            Stock Graph
           </h5>
           <div className='px-2 px-md-4'>
             <StockGraph height={100} mobileHeight={250} graphData={graphData} />

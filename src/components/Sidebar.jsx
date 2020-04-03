@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Col from 'react-bootstrap/Col';
-import Spinner from 'react-bootstrap/Spinner';
 import NewsCarousel from './NewsCarousel.jsx';
 import RatingCard from './RatingCard';
 
@@ -14,7 +13,7 @@ class Sidebar extends Component {
 
   render() {
     const { stockNews, stockRatings } = this.props;
-    console.log(stockRatings.data);
+
     return (
       <Col id='sidebar' xs={12} md={4} className='px-3'>
         <div className='rounded-large shadow-lg'>
@@ -33,7 +32,7 @@ class Sidebar extends Component {
             className='d-flex justify-content-center text-center px-3 py-2'
             style={{ flexWrap: 'wrap' }}
           >
-            {Object.entries(stockRatings).length !== 0 ? (
+            {Object.entries(stockRatings).length !== 0 && (
               <Fragment>
                 <RatingCard
                   score={stockRatings.data.ratingDetails['ROA'].score}
@@ -78,8 +77,6 @@ class Sidebar extends Component {
                   companyName='D/E'
                 />
               </Fragment>
-            ) : (
-              <Spinner animation='grow' />
             )}
           </div>
         </div>
