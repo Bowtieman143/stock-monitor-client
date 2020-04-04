@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 
 import './WatchList.css';
 
@@ -14,54 +12,51 @@ class WatchList extends Component {
   render() {
     return (
       <div id='watch-list-card-container' className='justify-content-left'>
-        <Card className='watch-list-card d-block m-0'>
-          <Card.Header>AAPL</Card.Header>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-            <Button
-              variant='primary'
-              onClick={() => {
-                this.props.changeStockProfileData('aapl');
-              }}
-            >
-              See Profile
-            </Button>
-          </ListGroup>
-        </Card>
-        <Card className='watch-list-card d-block m-0'>
-          <Card.Header>X</Card.Header>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-            <Button
-              variant='primary'
-              onClick={() => {
-                this.props.changeStockProfileData('x');
-              }}
-            >
-              See Profile
-            </Button>
-          </ListGroup>
-        </Card>
-        <Card className='watch-list-card d-block m-0'>
-          <Card.Header>CLDR</Card.Header>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-            <Button
-              variant='primary'
-              onClick={() => {
-                this.props.changeStockProfileData('cldr');
-              }}
-            >
-              See Profile
-            </Button>
-          </ListGroup>
-        </Card>
+        <div className='d-flex justify-content-between align-items-center watch-list-item'>
+          <Button className='rounded-0 watch-list-item-btn' variant='danger'>
+            X
+          </Button>
+          <span className='text-white p-2'>AAPL</span>
+          <Button
+            className='rounded-0 watch-list-item-btn'
+            variant='dark'
+            onClick={() => {
+              this.props.changeStockProfileData('aapl');
+            }}
+          >
+            X
+          </Button>
+        </div>
+        <div className='d-flex justify-content-between align-items-center watch-list-item'>
+          <Button className='rounded-0 watch-list-item-btn' variant='danger'>
+            X
+          </Button>
+          <span className='text-white p-2'>CLDR</span>
+          <Button
+            className='rounded-0 watch-list-item-btn'
+            variant='dark'
+            onClick={() => {
+              this.props.changeStockProfileData('cldr');
+            }}
+          >
+            X
+          </Button>
+        </div>
+        <div className='d-flex justify-content-between align-items-center watch-list-item'>
+          <Button className='rounded-0 watch-list-item-btn' variant='danger'>
+            X
+          </Button>
+          <span className='text-white p-2'>X</span>
+          <Button
+            className='rounded-0 watch-list-item-btn'
+            variant='dark'
+            onClick={() => {
+              this.props.changeStockProfileData('x');
+            }}
+          >
+            X
+          </Button>
+        </div>
       </div>
     );
   }

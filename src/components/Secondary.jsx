@@ -17,7 +17,7 @@ class Sidebar extends Component {
     const { stockNews, stockRatings } = this.props;
 
     return (
-      <Col id='sidebar' xs={12} md={4} className='px-3'>
+      <Col id='secondary' xs={12} md={4} className='px-3'>
         <div className='rounded-large shadow-lg'>
           <h5 className='w-100 bg-dark text-white text-center card-header-rounded-top py-2'>
             <span className='mr-2'>Articles</span>

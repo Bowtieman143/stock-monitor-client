@@ -126,7 +126,9 @@ class MainNavbar extends Component {
                   <Container className='d-lg-none text-white my-4'>
                     <Row>
                       <Col md={3}>
-                        <StockGraph graphData={graphData} />
+                        <div className='bg-light'>
+                          <StockGraph graphData={graphData} />
+                        </div>
                       </Col>
                       <Col md={9}>
                         {doesExist ? (
@@ -152,7 +154,9 @@ class MainNavbar extends Component {
           >
             <Row>
               <Col md={4}>
-                <StockGraph graphData={graphData} />
+                <div className='bg-light'>
+                  <StockGraph graphData={graphData} />
+                </div>
               </Col>
               <Col md={8}>
                 {doesExist ? (

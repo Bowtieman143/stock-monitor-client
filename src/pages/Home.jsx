@@ -2,12 +2,10 @@
 import React, { Component, Fragment } from 'react';
 import Navbar from '../layouts/Navbar.jsx';
 import Footer from '../layouts/Footer.jsx';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import StockProfile from '../components/StockProfile.jsx';
-import WatchList from '../components/WatchList.jsx';
 import Sidebar from '../layouts/Sidebar.jsx';
 
 // CSS STYLES
@@ -30,7 +28,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { showWatchList, currentStock } = this.state;
+    const { currentStock } = this.state;
     return (
       <Fragment>
         <Navbar />
@@ -38,42 +36,11 @@ class HomePage extends Component {
           <Row>
             <Col
               style={{ maxWidth: '15%' }}
-              className='bg-dark d-none d-sm-block'
+              className='bg-dark d-none d-sm-block p-0'
             >
-              <Sidebar />
+              <Sidebar changeStockProfileData={this.changeStockProfileData} />
             </Col>
             <Col style={{ maxWidth: '85%' }} className='p-0'>
-              <Container
-                className='position-fixed'
-                style={{ zIndex: 1, top: 100, maxWidth: '295px' }}
-              >
-                <Row>
-                  {showWatchList ? (
-                    <Col id='watchListCardContainer' className='shadow-lg p-0'>
-                      <WatchList
-                        changeStockProfileData={this.changeStockProfileData}
-                      />
-                    </Col>
-                  ) : null}
-                  <Col
-                    id='watchlistViewBtnContainer'
-                    className='d-flex align-items-center p-0'
-                  >
-                    <Button
-                      id='watchlistViewBtn'
-                      onClick={() => {
-                        if (showWatchList === true) {
-                          this.setState({ showWatchList: false });
-                        } else {
-                          this.setState({ showWatchList: true });
-                        }
-                      }}
-                    >
-                      Watchlist
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
               <StockProfile currentStock={currentStock} />
             </Col>
           </Row>

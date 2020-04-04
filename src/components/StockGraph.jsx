@@ -13,8 +13,9 @@ class StockGraph extends Component {
             {
               label: '# of Votes',
               data: [],
-              backgroundColor: ['rgba(255, 50, 24, 0.5)'],
-              lineTension: 0
+              backgroundColor: ['rgb(220,53,69,.4)'],
+              lineTension: 0.4,
+              fill: true
             }
           ]
         },
