@@ -4,6 +4,7 @@ import Navbar from '../layouts/Navbar.jsx';
 import Footer from '../layouts/Footer.jsx';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import StockProfile from '../components/StockProfile.jsx';
 import Sidebar from '../layouts/Sidebar.jsx';
@@ -32,15 +33,15 @@ class HomePage extends Component {
     return (
       <Fragment>
         <Navbar />
+        {/* <Button id='display-sidebar-btn' variant='danger'>
+          Hello World
+        </Button> */}
         <Container fluid>
-          <Row>
-            <Col
-              style={{ maxWidth: '15%' }}
-              className='bg-dark d-none d-sm-block p-0'
-            >
+          <Row className='position-relative'>
+            <Col id='sidebar-column' className='bg-dark d-none d-sm-block p-0'>
               <Sidebar changeStockProfileData={this.changeStockProfileData} />
             </Col>
-            <Col style={{ maxWidth: '85%' }} className='p-0'>
+            <Col style={{ maxWidth: 'auto' }} className='p-0'>
               <StockProfile currentStock={currentStock} />
             </Col>
           </Row>

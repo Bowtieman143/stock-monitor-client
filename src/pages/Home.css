@@ -29,3 +29,23 @@
   height: 300px;
   max-width: 30px !important;
 }
+
+#sidebar-column {
+  max-width: 15%;
+  position: relative;
+}
+/* 
+#display-sidebar-btn {
+  position: fixed;
+  top: 100px;
+  left: 0px;
+  z-index: 2;
+} */
+/* 
+@media (max-width: 767.98px) {
+  #sidebar-column {
+    max-width: 30%;
+    position: absolute;
+    z-index: 22;
+  }
+} */
