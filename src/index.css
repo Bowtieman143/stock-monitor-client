@@ -21,3 +21,31 @@ code {
   -moz-box-shadow: 0px 10px 26px -9px rgba(179, 179, 179, 1);
   box-shadow: 0px 10px 26px -9px rgba(179, 179, 179, 1);
 }
+
+input[type='text'] {
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 1px;
+  font-size: 13px;
+  background-color: inherit;
+  /* background-image: url('searchicon.png'); */
+  background-position: 8px 8px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+input[type='text']:focus,
+input[type='text']:active {
+  color: white;
+  background-color: inherit;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}

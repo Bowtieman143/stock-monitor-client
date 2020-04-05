@@ -136,21 +136,22 @@ class Primary extends Component {
             <FontAwesomeIcon icon={faQuestionCircle} size='sm' />
           </h5>
           <div className='px-4'>
-            {stockProfile.data !== undefined ? (
-              <Media>
-                <img
-                  width={64}
-                  height={64}
-                  className='mr-3'
-                  src={stockProfile.data.profile.image}
-                  alt='Generic placeholder'
-                />
-                <Media.Body>
-                  <h5>{stockProfile.data.profile.companyName}</h5>
-                  <p>{stockProfile.data.profile.description}</p>
-                </Media.Body>
-              </Media>
-            ) : null}
+            <Media>
+              <img
+                width={64}
+                height={64}
+                className='mr-3'
+                src={stockProfile.data.profile.image}
+                alt='Generic placeholder'
+              />
+              <Media.Body className='mb-1'>
+                <h5>{stockProfile.data.profile.companyName}</h5>
+                <p>{stockProfile.data.profile.description}</p>
+                <a href={stockProfile.data.profile.website}>
+                  {stockProfile.data.profile.website}
+                </a>
+              </Media.Body>
+            </Media>
           </div>
         </div>
       </Col>

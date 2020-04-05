@@ -82,7 +82,7 @@ class StockProfile extends Component {
     } = this.state;
 
     return (
-      <Container className='py-5'>
+      <Container className='py-4'>
         <Row>
           {containsAllCompanyData ? (
             <Fragment>
